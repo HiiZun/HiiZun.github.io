@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;562;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Chilanka&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+body {
+background-image: url('/public/img/background.jpg');
+background: url('/public/img/background.jpg');
+
+}
+
+p{
+  opacity:0;
+}
+
+.container {
+    position: absolute;
+    -webkit-box-shadow: 9px 9px 12px 3px rgba(0,0,0,0.68);
+    -moz-box-shadow: 9px 9px 12px 3px rgba(0,0,0,0.68);
+    box-shadow: 9px 9px 12px 3px rgba(0,0,0,0.68);    background-color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 50px;
+    border-radius: 2%;
+    border: 2px solid white;
+}
+
+#name {
+    font-family: 'Chilanka', cursive;
+    padding: 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+#info {
+    font-family: 'Dancing Script', cursive;
+    padding: 10px;
+    text-align: center;
+    font-weight:700;
+    font-size: 1.5rem;
+}
+#avatar {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+}
+
+hr {
+    width: 100%;
+    margin: 20px;
+    border: 1px solid #E4EBF0;
+    justify-self: center;
+    align-self: center;
+}
+
+.icons {
+    display: flex;
+    justify-content: space-evenly;
+}
+.icons > a > i {
+    font-size:35px;
+}
+
+i {
+    padding: 10px;
+    color: #000000;
+}
+
+i:hover {
+    color: #696969;
+}
+
+@media only screen and (max-width: 480px){
+  .container{
+    height:90vh;
+    width:90vw;
+  }
+}
