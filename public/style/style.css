@@ -8,9 +8,6 @@
 body {
     background-color: #232741;
 }
-p{
-  opacity:0;
-}
 .container {
     position: absolute;
     -webkit-box-shadow: 9px 9px 12px 3px rgba(0,0,0,0.68);
@@ -95,3 +92,50 @@ i:hover {
     top: 0;
     left: 0
 }
+.buttons > a {
+    /* style button */
+    border: none;
+    background-color: #232741;
+    padding: 15px;
+    border-radius: 16px;
+    color: white;
+    font-family: 'Chilanka', sans-serif;
+    text-decoration: none;
+    font-size: 12px;
+}
+.buttons > a:hover {
+    text-decoration: none;
+    background-color: #444966;
+
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: flex-start;
+    font-family: 'Chilanka', sans-serif;
+    }
+
+.flex-item:nth-child(1) {
+    margin: 25px;
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    }
+
+.flex-item:nth-child(2) {
+    margin: 25px;
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    }
+
+.flex-item:nth-child(3) {
+    margin: 25px;
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    }
