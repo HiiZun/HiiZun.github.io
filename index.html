@@ -1,35 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>HiiZun</title>
-    <meta content="Hello i'm HiiZun, i'm a system admin and also a freelance web developer, i make websites, discord bots, twitter bots, and many more!" name="description">
-    <meta name="viewport" width="device-width">
-    <link rel="stylesheet" href="/public/style/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hiizun.fr</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/bulma.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link href="assets/css/animation.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <img id="avatar" src="public/img/avatar.gif" width="128" height="128" alt="HiiZun's avatar">
-        <h1 id="name">HiiZun</h1>
-        <h3 id="info">🇫🇷 France</h3>
-        <hr>
-        <div class="icons">
-            <a href="https://github.com/HiiZun"><i class="fab fa-github"></i></a>
-            <a href="https://youtube.com/HiiZun"><i class="fab fa-youtube"></i></a>
-            <a href="https://twitter.com/hiizunfr"><i class="fab fa-twitter"></i></a>
-            <a href="https://steamcommunity.com/id/hiizun"><i class="fab fa-steam"></i></a>
-            <a href="https://discord.com/users/355995885085392896"><i class="fab fa-discord"></i></a>
-            <a href="mailto:contact@hiizun.fr"><i class="fa fa-envelope"></i></a>
+    <video preload="true" muted loop autoplay webkit-playsinline playsinline type="video/mp4" id="bgvid">
+        <source src="/assets/content/bg.mp4" type="video/mp4">
+      </video>
+      <audio id="audio" loop>
+        <source src="/assets/content/bg.mp4" type="audio/mp4">
+      </audio>
+     <div class="columns is-vcentered is-centered is-multiline is-boxcent">
+        <div class="column is-full p-1 m-6 slideDown rounded">
+          <h1 class="has-text-white is-size-1 has-text-centered">HiiZun</h1>
+          <h2 class="is-size-4 has-text-centered">Datacenter since Y2K™</h2>
         </div>
-        <hr>
-        <div class="buttons">
-            <a href="/status">💚 Status Monitor</a>
+        <div class="column is-full p-1 m-6 slideUp">
+          <div class="p-4 marqueecontainer">
+            <h3 id="latency-test" class="has-text-white is-size-4 has-text-centered">
+              Testing latency...
+            </h3>
+              <div class="marquee" id="marquee-data">
+                Loading data...
+              </div>
+          </div>
         </div>
-    </div>
+      </div>
 </body>
-<footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" integrity="sha512-Kef5sc7gfTacR7TZKelcrRs15ipf7+t+n7Zh6mKNJbmW+/RRdCW9nwfLn4YX0s2nO6Kv5Y2ChqgIakaC6PW09A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="public/js/script.js"></script>
-    <div id="particles-js"></div>
-</footer>
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="assets/js/jquery.marquee.min.js"></script>
+<script>
+  $(window).scroll(function() {
+      $('#animatedElement').each(function(){
+      var imagePos = $(this).offset().top;
+
+      var topOfWindow = $(window).scrollTop();
+          if (imagePos < topOfWindow+400) {
+              $(this).addClass("slideUp");
+          }
+      });
+  });
+</script>
+<script>
+  $('#animatedElement').click(function() {
+      $(this).addClass("slideUp");
+  });
+</script>
+<script src="assets/js/script.js"></script>
 </html>
