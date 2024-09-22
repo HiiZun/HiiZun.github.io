@@ -8,6 +8,8 @@ window.mobileAndTabletCheck = function () {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
+    document.getElementById('videoSelector').value = "assets/content/bg.mp4"
+
     // gonna troll with IP
     let res = await fetch("https://freeipapi.com/api/json/")
     res = await res.json()
@@ -44,8 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     setInterval(() => {
         document.getElementsByTagName("title")[0].innerHTML = titleText[x++%titleText.length];
     }, 350)
-        
-
+    
 
 });
 window.onload = () => {
@@ -68,8 +69,10 @@ window.onload = () => {
                 return latTest.innerHTML = "Latency: 🔴 Unreachable"
             }
             
-            let testDate = new Date(res.date).getTime()
-            let lat = parseInt((time - testDate)/2)
+            let newDate = Date.now();
+
+            //let testDate = new Date(res.date).getTime()
+            let lat = newDate - time
             return latTest.innerHTML = "Latency: 🟢 " + lat + "ms"
 
         }).catch(function(err) {
@@ -84,8 +87,19 @@ window.onload = () => {
             document.getElementById("bgvid").currentTime = audio.currentTime
         }
         } catch (e) {}
+
+        
     }, 200)
 }
+
+document.getElementById('videoSelector').addEventListener('change', function() {
+
+        // change video source
+        document.getElementById("bgvid").src = this.value;
+        // change audio source
+        document.getElementById("audio").src = this.value;
+
+})
 
 function pause() {
     if(paused) {
@@ -110,3 +124,4 @@ function mute() {
     var audio = document.getElementById("audio");
     audio.volume = 0;
 }
+

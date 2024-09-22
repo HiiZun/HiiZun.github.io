@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hiizun.fr</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link href="assets/css/shell.css" rel="stylesheet">
+    <link href="assets/css/bulma.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link href="assets/css/animation.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="prompt">
+    <div id="terminal">
+        <div id="output">
+            <h1 class="h1 is-1">HiiZun.fr Shell</h1>
+            <p id="output-text">Write help to get commands.</p>
+        </div>
+        <div id="input">
+            <span id="prompt-text">
+                root@hiizun.fr:~ #
+            </span>
+            <input type="text" id="command" autocomplete="off" spellcheck="false">
+        </div>
+    </div>
+</div>
+
+<div id="leave">
+    <a href="/">Leave the shell</a>
+</div>
+
+<!-- Including jQuery and marquee plugins -->
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="assets/js/jquery.marquee.min.js"></script>
+
+<script>
+  $(window).scroll(function() {
+      $('#animatedElement').each(function(){
+          var imagePos = $(this).offset().top;
+          var topOfWindow = $(window).scrollTop();
+          if (imagePos < topOfWindow + 400) {
+              $(this).addClass("slideUp");
+          }
+      });
+  });
+
+  var commands = {
+      clear: {
+          description: "Clear the terminal screen",
+          usage: "clear",
+          output: function() {
+              $("#output").html("");
+              return "";
+          }
+      },
+      echo: {
+          description: "Prints the given arguments",
+          usage: "echo [arguments]",
+          output: function(args) {
+              return args.join(" ");
+          }
+      },
+  };
+
+  function executeCommand(input) {
+      var args = input.split(" ");
+      var command = args[0];
+      args.shift();
+      args = args.filter(function(arg) {
+          return arg !== "";
+      });
+
+      if (command in commands) {
+          var output = commands[command].output;
+          if (typeof output === "function") {
+              output = output(args);
+          }
+          $("#output").append("<p><span class='prompt'>" + $("#prompt-text").text() + "</span> " + input + "</p><p>" + output + "</p>");
+      } else if (command === "help") {
+          var helpText = "Available commands: " + Object.keys(commands).join(", ");
+          $("#output").append("<p><span class='prompt'>" + $("#prompt-text").text() + "</span> " + input + "</p><p>" + helpText + "</p>");
+      } else {
+          if(command === "")
+              return;
+          $("#output").append("<p><span class='prompt'>" + $("#prompt-text").text() + "</span> " + input + "</p><p>-bash: " + command + ": command not found</p>");
+      }
+      $("#output").scrollTop($("#output").prop("scrollHeight"));
+  }
+
+  $("#command").keydown(function(e) {
+      if (e.keyCode === 13) {
+          executeCommand($(this).val());
+          $(this).val("");
+      }
+  });
+
+  $("#command").focus();
+</script>
+
+<script>
+  $('#animatedElement').click(function() {
+      $(this).addClass("slideUp");
+  });
+</script>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hiizun.fr</title>
+    <meta name="description" content="HiiZun - Expert in System & Network Engineering">
+
 
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
@@ -25,12 +27,12 @@
       <audio id="audio" loop>
         <source src="/assets/content/bg.mp4" type="audio/mp4">
       </audio>
-     <div class="columns is-vcentered is-centered is-multiline is-boxcent">
+     <div class="columns is-vcentered is-centered is-multiline is-boxcent" id="card">
         <div class="column is-full p-1 m-6 slideDown rounded">
           <h1 class="has-text-white is-size-1 has-text-centered">HiiZun</h1>
-          <h2 class="is-size-4 has-text-centered">Datacenter since Y2K™</h2>
+          <h2 class="is-size-4 has-text-centered">root@hiizun.fr:~ <a href="/shell" target="_blank">#</a></h2>
         </div>
-        <div class="column is-full p-1 m-6 slideUp">
+        <div class="column has-text-centered is-full p-1 m-6 slideUp">
           <div class="p-4 marqueecontainer">
             <h3 id="latency-test" class="has-text-white is-size-4 has-text-centered">
               Testing latency...
@@ -38,7 +40,7 @@
               <div class="marquee" id="marquee-data">
                 Loading data...
               </div>
-              <h6>FYI: everything is logged</h6>
+              <h6>Expert in System & Network Engineering</h6>
           </div>
         </div>
       </div>
@@ -50,6 +52,10 @@
         <button class="button is-dark is-rounded" onclick="pause()">
             ⏸
         </button>
+        <select name="video" id="videoSelector">
+            <option value="assets/content/bg.mp4" aria-selected="true" selected="true">911 GT2 RS</option>
+            <option value="assets/content/moldova.mp4">Trust Me - Moldova Trip</option>
+        </select>
       </div>
 </body>
 <script src="assets/js/jquery-3.6.0.min.js"></script>
@@ -72,4 +78,5 @@
   });
 </script>
 <script src="assets/js/script.js"></script>
+<script src="assets/js/card.js"></script>
 </html>
