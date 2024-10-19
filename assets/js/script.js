@@ -8,13 +8,18 @@ window.mobileAndTabletCheck = function () {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
-    document.getElementById('videoSelector').value = "assets/content/bg.mp4"
+    document.getElementById('videoSelector').value = "assets/content/petunias.mp4"
 
+
+    /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+particlesJS.load('particles-js', '/assets/particles.json', function() {
+    console.log('callback - particles.js config loaded');
+  });
     // gonna troll with IP
     let res = await fetch("https://freeipapi.com/api/json/")
     res = await res.json()
 
-    document.getElementById("marquee-data").innerHTML = `🌴 Hello from IPv{ver} 🌴 {ipAddress} 🌴 {city} 🌴 {country} ({countryCode}) 🌴 Lat: {lat} 🌴 Long: {lon} 🌴 {regionName} 🌴 TZ: {timezone} 🌴 {zip}`
+    document.getElementById("marquee-data").innerHTML = `🌴 IPv{ver} 🌴 {ipAddress} 🌴 {city} 🌴 {country} ({countryCode}) 🌴 Lat: {lat} 🌴 Long: {lon} 🌴 {regionName} 🌴 TZ: {timezone} 🌴 {zip}`
 
     document.getElementById("marquee-data").innerHTML = await document.getElementById("marquee-data").innerHTML.replace('{ver}', res.ipVersion).replace('{ipAddress}', res.ipAddress).replace('{city}', res.cityName).replace('{country}', res.countryName).replace('{countryCode}', res.countryCode).replace('{lat}', res.latitude).replace('{lon}', res.longitude).replace('{region}', res.region).replace('{regionName}', res.regionName).replace('{timezone}', res.timeZone).replace('{zip}', res.zipCode)
     
@@ -40,7 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-    var titleText = [ "hiizun.fr", "hiizun.f", "hiizun.", "hiizun", "hiizu", "hiiz", "hiiz", "hii", "hi", "h", "i", "i g", "i go", "i got", "i got u", "i got ur", "i got ur i", "i got ur ip", "hi got ur ip", "hii got ur p", "hiiz got ur", "hiizun.fr" ];
+    var titleText = [ "hiizun.fr", "hiizun.f", "hiizun.", "hiizun", "hiizu", "hiiz", "hii", "hi", "h", "∆", "h", "hi", "hii", "hiiz", "hiizu", "hiizun", "hiizun.", "hiizun.f" ]
     var x = 0;
 
     setInterval(() => {

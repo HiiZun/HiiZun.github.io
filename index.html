@@ -19,28 +19,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@700&display=swap" rel="stylesheet">
     <link href="assets/css/animation.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    
 </head>
 <body>
     <video preload="true" muted loop autoplay webkit-playsinline playsinline type="video/mp4" id="bgvid">
-        <source src="/assets/content/bg.mp4" type="video/mp4">
+        <source src="/assets/content/petunias.mp4" type="video/mp4">
       </video>
+      <div id="particles-js"></div>
       <audio id="audio" loop>
-        <source src="/assets/content/bg.mp4" type="audio/mp4">
+        <source src="/assets/content/petunias.mp4" type="audio/mp4">
       </audio>
      <div class="columns is-vcentered is-centered is-multiline is-boxcent" id="card">
         <div class="column is-full p-1 m-6 slideDown rounded">
-          <h1 class="has-text-white is-size-1 has-text-centered">HiiZun</h1>
-          <h2 class="is-size-4 has-text-centered">root@hiizun.fr:~ <a href="/shell" target="_blank">#</a></h2>
+          <h1 id="title" class="has-text-white has-text-centered">HiiZun</h1>
         </div>
-        <div class="column has-text-centered is-full p-1 m-6 slideUp">
+        <div class="column has-text-centered is-centered is-full p-1 m-6 slideUp">
           <div class="p-4 marqueecontainer">
             <h3 id="latency-test" class="has-text-white is-size-4 has-text-centered">
-              Testing latency...
+              🌡️
             </h3>
               <div class="marquee" id="marquee-data">
-                Loading data...
+                🔎
               </div>
-              <h6>Expert in System & Network Engineering</h6>
+              <div>
+                <p class="has-text-centered">
+                  <a href="https://github.com/hiizun"><i class="fab fa-github"></i></a> • <a href="https://panel.rip"><i class="fas fa-globe"></i></a>
+                </p>
+              </div>
           </div>
         </div>
       </div>
@@ -53,7 +59,8 @@
             ⏸
         </button>
         <select name="video" id="videoSelector">
-            <option value="assets/content/bg.mp4" aria-selected="true" selected="true">911 GT2 RS</option>
+            <option value="assets/content/petunias.mp4" aria-selected="true" selected="true">Petunias</option>
+            <option value="assets/content/bg.mp4" >911 GT2 RS</option>
             <option value="assets/content/moldova.mp4">Trust Me - Moldova Trip</option>
         </select>
       </div>
@@ -79,4 +86,5 @@
 </script>
 <script src="assets/js/script.js"></script>
 <script src="assets/js/card.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </html>
