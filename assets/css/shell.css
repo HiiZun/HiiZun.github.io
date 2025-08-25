@@ -1,40 +1,134 @@
 /*  this style is dedicated for a shell looking html page */
 body {
-    background-color: black;
-    color: green !important;
+    background-color: #000;
+    color: #00ff00 !important;
     max-height: 100vh;
     min-height: 100vh;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.5em !important;
+    font-size: 1.2em !important;
+    margin: 0;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+#terminal {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+#output {
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+#output p {
+    margin: 2px 0;
+    line-height: 1.4;
+}
+
+.prompt {
+    color: #00ffff !important;
+    font-weight: bold;
+}
+
+#prompt-text {
+    color: #00ffff;
+    font-weight: bold;
+}
+
+#input {
+    display: flex;
+    align-items: center;
 }
 
 #command {
-    color: green;
-    font-weight: bold;
-    background: none;
+    color: #00ff00;
+    font-weight: normal;
+    background: transparent;
     border: none;
     outline: none;
-    width: 50%;
+    flex: 1;
     margin: 0;
-    font-size: 1.5em;
+    font-size: 1.2em;
     padding: 0;
-    /* always blinking */
+    font-family: 'Courier New', Courier, monospace;
+    caret-color: #00ff00;
+}
+
+#command:focus {
+    background: transparent;
+}
+
+/* Blinking cursor effect */
+#command::after {
+    content: '█';
     animation: blink 1s infinite;
+    color: #00ff00;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
 }
 
 #leave {
     text-align: center;
-    position: absolute;
-    bottom: 50px;
-    width: 100%;
-    font-size: 1em;
-    border-radius: 16px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9em;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid #333;
 }
+
 #leave a {
-    text-align: center;
+    color: #00ff00;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+#leave a:hover {
+    color: #00ffff;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 @media screen and (max-device-width: 800px) {
-    html { background: url(/assets/content/buffer.png) #000 no-repeat center center fixed; }
-    #bgvid { display:  block; }
+    body {
+        font-size: 1em !important;
+        padding: 10px;
     }
+    
+    #terminal {
+        padding: 0;
+        margin: 0;
+    }
+    
+    #command {
+        font-size: 1em;
+    }
+}

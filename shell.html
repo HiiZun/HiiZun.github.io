@@ -24,11 +24,11 @@
     <div id="terminal">
         <div id="output">
             <h1 class="h1 is-1">HiiZun.fr Shell</h1>
-            <p id="output-text">Write help to get commands.</p>
+            <p id="output-text">Welcome to HiiZun's Unix-like shell! Type 'help' to see available commands.</p>
         </div>
         <div id="input">
             <span id="prompt-text">
-                root@hiizun.fr:~ #
+                hiizun@hiizun.fr:~$ 
             </span>
             <input type="text" id="command" autocomplete="off" spellcheck="false">
         </div>
@@ -54,57 +54,368 @@
       });
   });
 
+  var currentPath = "/home/hiizun";
+  var commandHistory = [];
+  var historyIndex = -1;
+  var fileSystem = {
+      "/": {
+          type: "directory",
+          contents: {
+              "home": {
+                  type: "directory", 
+                  contents: {
+                      "hiizun": {
+                          type: "directory",
+                          contents: {
+                              "documents": { type: "directory", contents: {} },
+                              "downloads": { type: "directory", contents: {} },
+                              "projects": { 
+                                  type: "directory", 
+                                  contents: {
+                                      "website": { type: "directory", contents: {} },
+                                      "scripts": { type: "directory", contents: {} }
+                                  }
+                              },
+                              "README.txt": { type: "file", content: "Welcome to HiiZun's system!" },
+                              ".bashrc": { type: "file", content: "# Bash configuration file" }
+                          }
+                      }
+                  }
+              },
+              "etc": { type: "directory", contents: {} },
+              "usr": { type: "directory", contents: {} },
+              "var": { type: "directory", contents: {} }
+          }
+      }
+  };
+
   var commands = {
       clear: {
           description: "Clear the terminal screen",
           usage: "clear",
           output: function() {
-              $("#output").html("");
+              $("#output").html('<h1 class="h1 is-1">HiiZun.fr Shell</h1>');
               return "";
           }
       },
       echo: {
-          description: "Prints the given arguments",
-          usage: "echo [arguments]",
+          description: "Display a line of text",
+          usage: "echo [STRING]...",
           output: function(args) {
               return args.join(" ");
           }
       },
+      ls: {
+          description: "List directory contents",
+          usage: "ls [OPTION]... [FILE]...",
+          output: function(args) {
+              var path = args.length > 0 ? args[0] : currentPath;
+              var absolutePath = resolvePath(path);
+              var dir = getDirectory(absolutePath);
+              
+              if (!dir || dir.type !== "directory") {
+                  return "ls: cannot access '" + path + "': No such file or directory";
+              }
+              
+              var items = [];
+              for (var name in dir.contents) {
+                  var item = dir.contents[name];
+                  if (item.type === "directory") {
+                      items.push("<span style='color: #87CEEB;'>" + name + "/</span>");
+                  } else {
+                      items.push(name);
+                  }
+              }
+              return items.length > 0 ? items.join("  ") : "";
+          }
+      },
+      pwd: {
+          description: "Print name of current/working directory",
+          usage: "pwd",
+          output: function() {
+              return currentPath;
+          }
+      },
+      cd: {
+          description: "Change the shell working directory",
+          usage: "cd [DIR]",
+          output: function(args) {
+              var path = args.length > 0 ? args[0] : "/home/hiizun";
+              var newPath = resolvePath(path);
+              var dir = getDirectory(newPath);
+              
+              if (!dir || dir.type !== "directory") {
+                  return "cd: " + path + ": No such file or directory";
+              }
+              
+              currentPath = newPath;
+              updatePrompt();
+              return "";
+          }
+      },
+      cat: {
+          description: "Display file contents",
+          usage: "cat [FILE]...",
+          output: function(args) {
+              if (args.length === 0) {
+                  return "cat: missing file operand";
+              }
+              
+              var results = [];
+              for (var i = 0; i < args.length; i++) {
+                  var path = resolvePath(args[i]);
+                  var file = getDirectory(path);
+                  
+                  if (!file) {
+                      results.push("cat: " + args[i] + ": No such file or directory");
+                  } else if (file.type === "directory") {
+                      results.push("cat: " + args[i] + ": Is a directory");
+                  } else {
+                      results.push(file.content || "");
+                  }
+              }
+              return results.join("\n");
+          }
+      },
+      whoami: {
+          description: "Print effective username",
+          usage: "whoami",
+          output: function() {
+              return "hiizun";
+          }
+      },
+      date: {
+          description: "Display or set the system date",
+          usage: "date",
+          output: function() {
+              return new Date().toString();
+          }
+      },
+      uname: {
+          description: "Print system information",
+          usage: "uname [OPTION]...",
+          output: function(args) {
+              if (args.includes("-a")) {
+                  return "HiiZun 5.15.0 #1 SMP Web x86_64 GNU/WebShell";
+              }
+              return "HiiZun";
+          }
+      },
+      history: {
+          description: "Display command history",
+          usage: "history",
+          output: function() {
+              var result = [];
+              for (var i = 0; i < commandHistory.length; i++) {
+                  result.push("  " + (i + 1) + "  " + commandHistory[i]);
+              }
+              return result.join("\n");
+          }
+      },
+      ps: {
+          description: "Display running processes",
+          usage: "ps",
+          output: function() {
+              return "  PID TTY          TIME CMD\n" +
+                     " 1337 pts/0    00:00:01 webshell\n" +
+                     " 1338 pts/0    00:00:00 ps";
+          }
+      },
+      man: {
+          description: "Display manual pages",
+          usage: "man [COMMAND]",
+          output: function(args) {
+              if (args.length === 0) {
+                  return "What manual page do you want?";
+              }
+              
+              var cmd = args[0];
+              if (commands[cmd]) {
+                  return "NAME\n       " + cmd + " - " + commands[cmd].description + 
+                         "\n\nSYNOPSIS\n       " + commands[cmd].usage +
+                         "\n\nDESCRIPTION\n       " + commands[cmd].description;
+              }
+              return "No manual entry for " + cmd;
+          }
+      },
+      tree: {
+          description: "Display directory tree structure",
+          usage: "tree [directory]",
+          output: function(args) {
+              var path = args.length > 0 ? args[0] : currentPath;
+              var absolutePath = resolvePath(path);
+              var dir = getDirectory(absolutePath);
+              
+              if (!dir || dir.type !== "directory") {
+                  return "tree: " + path + ": No such file or directory";
+              }
+              
+              function buildTree(directory, prefix = "", isLast = true) {
+                  var result = [];
+                  var items = Object.keys(directory.contents);
+                  
+                  for (var i = 0; i < items.length; i++) {
+                      var name = items[i];
+                      var item = directory.contents[name];
+                      var isLastItem = i === items.length - 1;
+                      var connector = isLastItem ? "└── " : "├── ";
+                      var displayName = item.type === "directory" ? name + "/" : name;
+                      
+                      result.push(prefix + connector + displayName);
+                      
+                      if (item.type === "directory" && Object.keys(item.contents).length > 0) {
+                          var newPrefix = prefix + (isLastItem ? "    " : "│   ");
+                          result = result.concat(buildTree(item, newPrefix, isLastItem));
+                      }
+                  }
+                  return result;
+              }
+              
+              var tree = [path === absolutePath ? absolutePath : path];
+              tree = tree.concat(buildTree(dir));
+              return tree.join("\n");
+          }
+      }
   };
 
+  function resolvePath(path) {
+      if (path.startsWith("/")) {
+          return path;
+      }
+      
+      if (path === "..") {
+          var parts = currentPath.split("/");
+          parts.pop();
+          return parts.length > 1 ? parts.join("/") : "/";
+      }
+      
+      if (path === ".") {
+          return currentPath;
+      }
+      
+      if (path.includes("../")) {
+          var parts = currentPath.split("/");
+          var pathParts = path.split("/");
+          
+          for (var i = 0; i < pathParts.length; i++) {
+              if (pathParts[i] === "..") {
+                  parts.pop();
+              } else if (pathParts[i] !== "." && pathParts[i] !== "") {
+                  parts.push(pathParts[i]);
+              }
+          }
+          return parts.length > 1 ? parts.join("/") : "/";
+      }
+      
+      return currentPath === "/" ? "/" + path : currentPath + "/" + path;
+  }
+
+  function getDirectory(path) {
+      var parts = path.split("/").filter(function(part) { return part !== ""; });
+      var current = fileSystem["/"];
+      
+      for (var i = 0; i < parts.length; i++) {
+          if (current.contents && current.contents[parts[i]]) {
+              current = current.contents[parts[i]];
+          } else {
+              return null;
+          }
+      }
+      return current;
+  }
+
+  function updatePrompt() {
+      var shortPath = currentPath.replace("/home/hiizun", "~");
+      $("#prompt-text").text("hiizun@hiizun.fr:" + shortPath + "$ ");
+  }
+
   function executeCommand(input) {
-      var args = input.split(" ");
+      if (input.trim() === "") {
+          return;
+      }
+      
+      // Add to history
+      commandHistory.push(input);
+      historyIndex = commandHistory.length;
+      
+      var args = input.trim().split(/\s+/);
       var command = args[0];
       args.shift();
-      args = args.filter(function(arg) {
-          return arg !== "";
-      });
 
       if (command in commands) {
           var output = commands[command].output;
           if (typeof output === "function") {
               output = output(args);
           }
-          $("#output").append("<p><span class='prompt'>" + $("#prompt-text").text() + "</span> " + input + "</p><p>" + output + "</p>");
+          $("#output").append("<p><span class='prompt'>" + $("#prompt-text").text() + "</span>" + input + "</p>");
+          if (output) {
+              $("#output").append("<p>" + output + "</p>");
+          }
       } else if (command === "help") {
-          var helpText = "Available commands: " + Object.keys(commands).join(", ");
-          $("#output").append("<p><span class='prompt'>" + $("#prompt-text").text() + "</span> " + input + "</p><p>" + helpText + "</p>");
+          var helpText = "Available commands:\n";
+          for (var cmd in commands) {
+              helpText += "  " + cmd.padEnd(12) + " - " + commands[cmd].description + "\n";
+          }
+          helpText += "\nType 'man [command]' for detailed information about a command.";
+          $("#output").append("<p><span class='prompt'>" + $("#prompt-text").text() + "</span>" + input + "</p><p>" + helpText + "</p>");
       } else {
-          if(command === "")
-              return;
-          $("#output").append("<p><span class='prompt'>" + $("#prompt-text").text() + "</span> " + input + "</p><p>-bash: " + command + ": command not found</p>");
+          $("#output").append("<p><span class='prompt'>" + $("#prompt-text").text() + "</span>" + input + "</p><p>bash: " + command + ": command not found</p>");
       }
       $("#output").scrollTop($("#output").prop("scrollHeight"));
   }
 
   $("#command").keydown(function(e) {
-      if (e.keyCode === 13) {
+      if (e.keyCode === 13) { // Enter
           executeCommand($(this).val());
           $(this).val("");
+      } else if (e.keyCode === 38) { // Up arrow - previous command
+          e.preventDefault();
+          if (historyIndex > 0) {
+              historyIndex--;
+              $(this).val(commandHistory[historyIndex]);
+          }
+      } else if (e.keyCode === 40) { // Down arrow - next command
+          e.preventDefault();
+          if (historyIndex < commandHistory.length - 1) {
+              historyIndex++;
+              $(this).val(commandHistory[historyIndex]);
+          } else {
+              historyIndex = commandHistory.length;
+              $(this).val("");
+          }
+      } else if (e.keyCode === 9) { // Tab - basic autocomplete
+          e.preventDefault();
+          var input = $(this).val();
+          var matches = [];
+          
+          // Command completion
+          for (var cmd in commands) {
+              if (cmd.startsWith(input)) {
+                  matches.push(cmd);
+              }
+          }
+          
+          if (matches.length === 1) {
+              $(this).val(matches[0] + " ");
+          } else if (matches.length > 1) {
+              $("#output").append("<p>" + matches.join("  ") + "</p>");
+              $("#output").scrollTop($("#output").prop("scrollHeight"));
+          }
+      } else if (e.ctrlKey && e.keyCode === 67) { // Ctrl+C
+          e.preventDefault();
+          $("#output").append("<p><span class='prompt'>" + $("#prompt-text").text() + "</span>" + $(this).val() + "^C</p>");
+          $(this).val("");
+          $("#output").scrollTop($("#output").prop("scrollHeight"));
+      } else if (e.ctrlKey && e.keyCode === 76) { // Ctrl+L - clear screen
+          e.preventDefault();
+          commands.clear.output();
       }
   });
 
   $("#command").focus();
+  
+  // Initialize the shell
+  updatePrompt();
 </script>
 
 <script>

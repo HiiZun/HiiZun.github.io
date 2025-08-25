@@ -8,7 +8,7 @@ window.mobileAndTabletCheck = function () {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
-    document.getElementById('videoSelector').value = "assets/content/petunias.mp4"
+    document.getElementById('videoSelector').value = "assets/content/Trip to balkans.mp4"
 
 
     /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
