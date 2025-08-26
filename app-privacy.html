@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique de confidentialité - hiizun.fr</title>
+    <meta name="description" content="Politique de confidentialité - HiiZun">
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/bulma.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    
+</head>
+<body>
+      <div id="particles-js"></div>
+     <div class="columns is-vcentered is-centered is-multiline is-boxcent" id="card">
+        <div class="column is-full p-1 m-6 slideDown rounded">
+          <h1 id="title" class="has-text-white has-text-centered">Politique de confidentialité</h1>
+          <p class="has-text-white has-text-centered is-size-6">Dernière mise à jour: 26/08/2025</p>
+        </div>
+        
+        <div class="column is-full p-4 m-2 slideUp">
+          <div class="content has-text-white" style="background: rgba(0,0,0,0.9); padding: 2rem; border-radius: 10px; max-height: 70vh; overflow-y: auto;">
+            
+            <h2 class="has-text-white">1. Qui sommes-nous</h2>
+            <ul>
+              <li><strong>Éditeur:</strong> Projet personnel</li>
+              <li><strong>Responsable du traitement:</strong> HiiZun (Marius)</li>
+              <li><strong>Contact:</strong> drmariusg85@gmail.com</li>
+              <li><strong>Site:</strong> https://hiizun.fr</li>
+            </ul>
+
+            <h2 class="has-text-white">2. Finalité du traitement</h2>
+            <p>L'application "Zebinet" réalise des sauvegardes automatisées de vos données vers votre espace Google Drive à l'aide de rclone. Elle accède uniquement aux données nécessaires pour:</p>
+            <ul>
+              <li>lire/écrire des fichiers et dossiers dans l'emplacement Google Drive que vous avez autorisé;</li>
+              <li>synchroniser, vérifier l'intégrité des sauvegardes et gérer les versions selon votre configuration.</li>
+            </ul>
+
+            <h2 class="has-text-white">3. Données traitées</h2>
+            <p>Selon votre configuration rclone et les scopes accordés, l'application peut traiter:</p>
+            <ul>
+              <li>Contenu des fichiers sauvegardés;</li>
+              <li>Métadonnées de fichiers (noms, tailles, dates, chemins, identifiants);</li>
+              <li>Informations techniques nécessaires à l'authentification (access token, refresh token, identifiant client OAuth), stockées localement et chiffrées si vous l'activez.</li>
+            </ul>
+            <p>Aucune donnée "de profil" n'est exploitée à des fins marketing.</p>
+
+            <h2 class="has-text-white">4. Base légale</h2>
+            <p>Le traitement repose sur votre consentement explicite via l'écran de consentement OAuth de Google et/ou sur l'exécution d'un contrat (fourniture du service de sauvegarde que vous avez demandé).</p>
+
+            <h2 class="has-text-white">5. Accès aux API Google et scopes</h2>
+            <p>L'application utilise l'API Google Drive avec des autorisations limitées au strict nécessaire. Les scopes exacts sont affichés par Google lors du consentement. Nous n'accédons qu'aux ressources que vous nous autorisez. Si des scopes sensibles/restrints sont requis, l'application suit la procédure de vérification Google. (developers.google.com)</p>
+
+            <h2 class="has-text-white">6. Lieu de traitement et destinataires</h2>
+            <ul>
+              <li>Vos fichiers sont transférés vers votre propre compte Google Drive.</li>
+              <li>Les jetons OAuth sont conservés localement sur votre machine/serveur pour rafraîchir l'accès, et ne sont pas partagés avec des tiers.</li>
+              <li>Aucun partage commercial de données.</li>
+            </ul>
+
+            <h2 class="has-text-white">7. Sécurité</h2>
+            <ul>
+              <li>Communications chiffrées (HTTPS) avec les services Google.</li>
+              <li>Recommandations: protéger le fichier de configuration rclone, chiffrer le remote rclone (option rclone crypt) pour chiffrer vos fichiers au repos sur Drive, limiter l'accès au système hébergeant les sauvegardes.</li>
+            </ul>
+
+            <h2 class="has-text-white">8. Durées de conservation</h2>
+            <ul>
+              <li><strong>Fichiers:</strong> selon votre propre politique de rétention paramétrée dans rclone.</li>
+              <li><strong>Jetons OAuth:</strong> conservés tant que nécessaires au service et supprimés à votre demande; notez que Google peut invalider un refresh token en cas d'inactivité prolongée. (cloud.google.com)</li>
+            </ul>
+
+            <h2 class="has-text-white">9. Vos droits (RGPD)</h2>
+            <p>Vous disposez des droits d'accès, rectification, effacement, limitation, opposition et portabilité. Pour les exercer: <a href="mailto:drmariusg85@gmail.com" style="color: #00ffff;">drmariusg85@gmail.com</a>. Vous pouvez aussi révoquer l'accès via la page "Applications ayant accès à votre compte" de Google.</p>
+
+            <h2 class="has-text-white">10. Transferts hors UE</h2>
+            <p>Google peut traiter et stocker des données hors de l'UE. Google affirme mettre en place des garanties conformes au RGPD. Référez-vous également à la politique de confidentialité de Google.</p>
+
+            <h2 class="has-text-white">11. Modifications</h2>
+            <p>Nous pouvons mettre à jour cette politique. La date de "Dernière mise à jour" sera ajustée et les changements substantiels seront annoncés sur le site.</p>
+
+            <h2 class="has-text-white">12. Contact et réclamations</h2>
+            <ul>
+              <li><strong>E-mail:</strong> <a href="mailto:drmariusg85@gmail.com" style="color: #00ffff;">drmariusg85@gmail.com</a></li>
+              <li><strong>Autorité de contrôle:</strong> CNIL (cnil.fr)</li>
+            </ul>
+
+            <div class="has-text-centered" style="margin-top: 2rem;">
+              <a href="/" class="button is-primary">Retour à l'accueil</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Navigation buttons -->
+      <div class="is-flex is-justify-content-center" style="margin-top: 1rem;">
+        <a href="/" class="button is-dark is-rounded" style="margin: 0 0.5rem;">
+            🏠 Accueil
+        </a>
+        <a href="/shell" class="button is-dark is-rounded" style="margin: 0 0.5rem;">
+            💻 Terminal
+        </a>
+      </div>
+</body>
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="assets/js/jquery.marquee.min.js"></script>
+<script>
+  $(window).scroll(function() {
+      $('#animatedElement').each(function(){
+      var imagePos = $(this).offset().top;
+
+      var topOfWindow = $(window).scrollTop();
+          if (imagePos < topOfWindow+400) {
+              $(this).addClass("slideUp");
+          }
+      });
+  });
+</script>
+<script>
+  $('#animatedElement').click(function() {
+      $(this).addClass("slideUp");
+  });
+</script>
+<script src="assets/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</html>

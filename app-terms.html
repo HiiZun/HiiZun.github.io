@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions d'utilisation - hiizun.fr</title>
+    <meta name="description" content="Conditions d'utilisation - HiiZun">
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/bulma.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    
+</head>
+<body>
+      <div id="particles-js"></div>
+     <div class="columns is-vcentered is-centered is-multiline is-boxcent" id="card">
+        <div class="column is-full p-1 m-6 slideDown rounded">
+          <h1 id="title" class="has-text-white has-text-centered">Conditions d'utilisation</h1>
+          <p class="has-text-white has-text-centered is-size-6">Dernière mise à jour: 26/08/2025</p>
+        </div>
+        
+        <div class="column is-full p-4 m-2 slideUp">
+          <div class="content has-text-white" style="background: rgba(0,0,0,0.9); padding: 2rem; border-radius: 10px; max-height: 70vh; overflow-y: auto;">
+            
+            <h2 class="has-text-white">1. Objet</h2>
+            <p>Les présentes Conditions régissent l'utilisation de "Zebinet", outil de sauvegarde automatisée vers Google Drive via rclone.</p>
+
+            <h2 class="has-text-white">2. Éligibilité et compte</h2>
+            <p>Vous devez disposer d'un compte Google valide et des droits nécessaires sur l'espace où les sauvegardes sont stockées. Vous êtes responsable de la sécurité de votre environnement (machine/serveur) et des identifiants OAuth.</p>
+
+            <h2 class="has-text-white">3. Fonctionnement</h2>
+            <ul>
+              <li>L'outil se connecte via OAuth 2.0 et utilise des jetons d'accès/actualisation pour synchroniser vos données.</li>
+              <li>Vous configurez les dossiers sources, la destination Drive, la rétention, l'ordonnancement et, le cas échéant, le chiffrement rclone.</li>
+            </ul>
+
+            <h2 class="has-text-white">4. Responsabilités</h2>
+            <ul>
+              <li>Vous êtes responsable du contenu sauvegardé et du respect du droit applicable (notamment droits d'auteur et données personnelles).</li>
+              <li>Nous déployons des efforts raisonnables pour assurer la disponibilité et la sécurité de l'outil, sans garantie d'absence d'erreurs.</li>
+              <li><strong>Sauvegardes:</strong> effectuez des tests de restauration et vérifiez régulièrement l'intégrité de vos backups.</li>
+            </ul>
+
+            <h2 class="has-text-white">5. Confidentialité et données</h2>
+            <p>Reportez‑vous à la <a href="/app-privacy" style="color: #00ffff;">Politique de confidentialité</a>. Vous pouvez à tout moment révoquer l'accès de l'application dans votre compte Google.</p>
+
+            <h2 class="has-text-white">6. Sécurité</h2>
+            <p>Nous recommandons:</p>
+            <ul>
+              <li>l'usage d'un remote chiffré rclone pour les fichiers sensibles;</li>
+              <li>la rotation périodique des secrets (client secret) et la protection des fichiers de configuration;</li>
+              <li>la mise à jour régulière de rclone et des dépendances.</li>
+            </ul>
+
+            <h2 class="has-text-white">7. Limitations et interruptions</h2>
+            <p>Le service peut être interrompu pour maintenance, mise à jour ou en cas de défaillance des API Google. Nous ne sommes pas responsables des indisponibilités externes (pannes Google, quotas, changements d'API).</p>
+
+            <h2 class="has-text-white">8. Évolutions</h2>
+            <p>Nous pouvons modifier l'outil et/ou ces Conditions. L'usage après publication des modifications vaut acceptation des nouvelles Conditions.</p>
+
+            <h2 class="has-text-white">9. Résiliation</h2>
+            <p>Vous pouvez cesser d'utiliser l'outil à tout moment et supprimer les jetons/local config. Nous pouvons suspendre ou résilier l'accès en cas d'usage abusif ou de non-respect des présentes.</p>
+
+            <h2 class="has-text-white">10. Droit applicable</h2>
+            <p>Droit français. En cas de litige, et à défaut d'accord amiable, compétence des tribunaux de Paris.</p>
+
+            <h2 class="has-text-white">11. Contact</h2>
+            <p><strong>E-mail:</strong> <a href="mailto:drmariusg85@gmail.com" style="color: #00ffff;">drmariusg85@gmail.com</a></p>
+
+            <div class="has-text-centered" style="margin-top: 2rem;">
+              <a href="/" class="button is-primary">Retour à l'accueil</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Navigation buttons -->
+      <div class="is-flex is-justify-content-center" style="margin-top: 1rem;">
+        <a href="/" class="button is-dark is-rounded" style="margin: 0 0.5rem;">
+            🏠 Accueil
+        </a>
+        <a href="/shell" class="button is-dark is-rounded" style="margin: 0 0.5rem;">
+            💻 Terminal
+        </a>
+      </div>
+</body>
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="assets/js/jquery.marquee.min.js"></script>
+<script>
+  $(window).scroll(function() {
+      $('#animatedElement').each(function(){
+      var imagePos = $(this).offset().top;
+
+      var topOfWindow = $(window).scrollTop();
+          if (imagePos < topOfWindow+400) {
+              $(this).addClass("slideUp");
+          }
+      });
+  });
+</script>
+<script>
+  $('#animatedElement').click(function() {
+      $(this).addClass("slideUp");
+  });
+</script>
+<script src="assets/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</html>
